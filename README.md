@@ -4,7 +4,13 @@
 
 Matriculation Number: <to be filled by student>
 
-Project idea short description: 
+Project idea short description: **Picture/GIF Search Engine**  
+
+Search engine that uses the API's of 
+Unsplash, 500px, Pixabay, Dribbble and GIPHY...
+to generate a grid of images from these sources.   
+These sources can be filtered and displayed in an infinite grid or paginated grid.  
+Each Picture/GIF links to the original source.
 
 
 ## Project confirmation
