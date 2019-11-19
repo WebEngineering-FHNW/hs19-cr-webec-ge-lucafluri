@@ -15,8 +15,7 @@ Each Picture/GIF links to the original source.
 
 ## Project confirmation
 
-< to be filled by lecturer>
-
+Cool, looking forward. You might start.
 
 ## Project delivery <to be filled by student>
 
