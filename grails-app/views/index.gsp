@@ -1,77 +1,60 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Searcher</title>
+    <style>
+    img {
+        width: 100%;
+        max-width: 100%;
+    }
+    </style>
 </head>
 <body>
-<content tag="nav">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
-            <li class="dropdown-item"><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
-            <li class="dropdown-item"><a href="#">App version:
-                <g:meta name="info.app.version"/></a>
-            </li>
-            <li role="separator" class="dropdown-divider"></li>
-            <li class="dropdown-item"><a href="#">Grails version:
-                <g:meta name="info.app.grailsVersion"/></a>
-            </li>
-            <li class="dropdown-item"><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
-            <li class="dropdown-item"><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
-            <li role="separator" class="dropdown-divider"></li>
-            <li class="dropdown-item"><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
-        </ul>
-    </li>
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artefacts <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>
-            <li class="dropdown-item"><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>
-            <li class="dropdown-item"><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>
-            <li class="dropdown-item"><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
-        </ul>
-    </li>
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installed Plugins <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-                <li class="dropdown-item"><a href="#">${plugin.name} - ${plugin.version}</a></li>
-            </g:each>
-        </ul>
-    </li>
-</content>
-
-<div class="svg" role="presentation">
-    <div class="grails-logo-container">
-        <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
-    </div>
-</div>
-
-<div id="content" role="main">
-    <section class="row colset-2-its">
-        <h1>Welcome to Grails</h1>
-
-        <p>
-            Congratulations, you have successfully started your first Grails application! At the moment
-            this is the default page, feel free to modify it to either redirect to a controller or display
-            whatever content you may choose. Below is a list of controllers that are currently deployed in
-            this application, click on each to execute its default action:
-        </p>
-
-        <div id="controllers" role="navigation">
-            <h2>Available Controllers:</h2>
-            <ul>
-                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                    <li class="controller">
-                        <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                    </li>
-                </g:each>
-            </ul>
-        </div>
-    </section>
-</div>
-
+<main>
+    <form>
+        <label for="search">Search</label>
+        <input id="search" type="search" />
+        <button id="btnSearch">Go</button>
+    </form>
+    <div class="out"></div>
+</main>
+<script>
+    let APIKEY = "LYq9LkEJfZhdTV7obo3RZKZoZSfhgowP";
+    // you will need to get your own API KEY
+    // https://developers.giphy.com/dashboard/
+    document.addEventListener("DOMContentLoaded", init);
+    function init() {
+        document.getElementById("btnSearch").addEventListener("click", ev => {
+            ev.preventDefault(); //to stop the page reload
+            let url = `https://api.giphy.com/v1/gifs/search?api_key=LYq9LkEJfZhdTV7obo3RZKZoZSfhgowP&limit=1&q=`;
+            let str = document.getElementById("search").value.trim();
+            url = url.concat(str);
+            console.log(url);
+            fetch(url)
+                .then(response => response.json())
+                .then(content => {
+                    //  data, pagination, meta
+                    console.log(content.data);
+                    console.log("META", content.meta);
+                    let fig = document.createElement("figure");
+                    let img = document.createElement("img");
+                    let fc = document.createElement("figcaption");
+                    img.src = content.data[0].images.downsized.url;
+                    img.alt = content.data[0].title;
+                    fc.textContent = content.data[0].title;
+                    fig.appendChild(img);
+                    fig.appendChild(fc);
+                    let out = document.querySelector(".out");
+                    out.insertAdjacentElement("afterbegin", fig);
+                    document.querySelector("#search").value = "";
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        });
+    }
+</script>
 </body>
 </html>
