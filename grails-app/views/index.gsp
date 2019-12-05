@@ -11,9 +11,8 @@
 <body>
 <main>
     <form>
-        <label for="search">Search</label>
         <input id="search" type="search" />
-        <button id="btnSearch">Go</button>
+        <button id="btnSearch">Seach</button>
     </form>
     <div class="out"></div>
 </main>

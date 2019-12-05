@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", init);
 
 function init() {
     document.getElementById("btnSearch").addEventListener("click", ev => {
-        ev.preventDefault(); //to stop the page reload
+        ev.preventDefault(); //Stop page reload
         getGiphy();
 
     });
