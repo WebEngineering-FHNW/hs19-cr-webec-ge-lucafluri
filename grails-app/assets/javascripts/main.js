@@ -28,11 +28,12 @@ function getGiphy(){
             //  data, pagination, meta
             console.log(content.data);
             console.log("META", content.meta);
-            let fig = document.createElement("figure");
+            let fig = document.createElement("div");
             let img = document.createElement("img");
             img.src = content.data[0].images.downsized.url;
             img.alt = content.data[0].title;
             fig.appendChild(img);
+            fig.className = "image";
             let out = document.querySelector(".out");
             out.insertAdjacentElement("afterbegin", fig);
             document.querySelector("#search").value = "";
