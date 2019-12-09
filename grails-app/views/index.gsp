@@ -11,9 +11,12 @@
 <body>
 <main>
     <form>
-        <input id="search" type="search" />
+        <label for="search"></label><input id="search" type="search" />
         <button id="btnSearch">Seach</button>
     </form>
+    <div class="favorites">
+       <a href="/Picture/favorites">Favorites</a>
+    </div>
     <div class="out"></div>
 </main>
 </body>

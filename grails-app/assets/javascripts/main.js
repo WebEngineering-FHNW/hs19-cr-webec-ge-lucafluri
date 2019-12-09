@@ -36,8 +36,21 @@ function getGiphy(){
             let out = document.querySelector(".out");
             out.insertAdjacentElement("afterbegin", fig);
             document.querySelector("#search").value = "";
+
+            addToFavorites(img.src, img.alt);
         })
         .catch(err => {
             console.error(err);
         });
+}
+
+function addToFavorites(url, title){
+    fetch("/Picture/add", {
+        method: "POST",
+        body: JSON.stringify({
+            url: url,
+            title: title,
+        })
+    }).then(r => {
+        console.log("Added to Favorites");})
 }

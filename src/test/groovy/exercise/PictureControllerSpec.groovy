@@ -1,9 +1,9 @@
 package exercise
 
-import grails.testing.gorm.DomainUnitTest
+import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 
-class ImageSpec extends Specification implements DomainUnitTest<Image> {
+class PictureControllerSpec extends Specification implements ControllerUnitTest<PictureController> {
 
     def setup() {
     }
