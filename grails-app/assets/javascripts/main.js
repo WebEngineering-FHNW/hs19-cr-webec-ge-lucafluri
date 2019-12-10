@@ -25,6 +25,10 @@ function init() {
 
 async function displayImages(ev) {
     ev.preventDefault(); //Stop page reload
+    //clear image array and clear html div
+    images = [];
+    document.querySelector(".out").innerHTML = "";
+
 
     //Check fo checkboxes
     giphyBool = document.getElementById("giphyCheckbox").checked;
@@ -36,6 +40,38 @@ async function displayImages(ev) {
         if (pixabayBool) await getPixabay();
     }
 
+    for(let i = 0; i<Math.max(imagesGiphy.length, imagesUnsplash.length, imagesPixabay.length); i++){
+        if(imagesGiphy.length > 0) images.unshift(imagesGiphy.shift());
+        if(imagesUnsplash.length > 0) images.unshift(imagesUnsplash.shift());
+        if(imagesPixabay.length > 0) images.unshift(imagesPixabay.shift());
+    }
+
+    console.log(images);
+    for(let i = 0; i < images.length; i++){
+        let div = document.createElement("div");
+        let link = document.createElement("a");
+        let img = document.createElement("img");
+        let btn = document.createElement("button");
+        btn.class = "btn";
+        btn.textContent = "Favorite";
+        img.src = images[i].imageUrl;
+        img.alt = images[i].title;
+        link.href = images[i].url;
+        link.target = "_blank";
+        link.appendChild(img);
+        div.appendChild(link);
+        div.appendChild(btn);
+        div.className = "image";
+        let out = document.querySelector(".out");
+        out.insertAdjacentElement("afterbegin", div);
+        document.querySelector("#search").value = "";
+
+        btn.addEventListener("click", ev => {
+            addToFavorites(img.src, img.alt);
+        })
+
+    }
+
 
 
 
@@ -45,6 +81,9 @@ async function displayImages(ev) {
 async function getGiphy(){
     let url = `https://api.giphy.com/v1/gifs/search?api_key=` + APIKEY_GIPHY + `&q=`;
     let str = document.getElementById("search").value.trim();
+
+    //clear old array
+    imagesGiphy = [];
 
 
     url = url.concat(str);
@@ -61,7 +100,7 @@ async function getGiphy(){
                 //console.log("image: " + images[i].url)
                 imagesGiphy.push({
                     title: images[i].title,
-                    imageUrl: images[i].url,
+                    imageUrl: images[i].images.downsized.url,
                     url: images[i].url
                 })
             }
@@ -100,6 +139,9 @@ async function getGiphy(){
 async function getUnsplash(){
     let url = "https://api.unsplash.com/search/photos/?client_id=" + APIKEY_Unsplash + "&query=";
     let str = document.getElementById("search").value.trim();
+
+    //clear old array
+    imagesUnsplash = [];
 
     url = url.concat(str);
 
@@ -152,6 +194,8 @@ async function getPixabay(){
     let url = "https://pixabay.com/api/?key=" + APIKEY_Pixabay + "&q=";
     let str = document.getElementById("search").value.trim();
 
+    //clear old array
+    imagesPixabays = [];
 
     url = url.concat(str);
     //console.log(url);
