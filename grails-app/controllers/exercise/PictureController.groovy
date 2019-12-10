@@ -22,7 +22,7 @@ class PictureController {
 
     def favorites(){
         def favourites = Picture.getAll()
-        render view: 'favorites', model: [favorites: favourites]
+        render view: "favorites", model: [favorites: favourites.reverse()]
     }
 
 

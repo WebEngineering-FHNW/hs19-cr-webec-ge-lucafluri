@@ -12,6 +12,15 @@
 <main>
     <form>
         <label for="search"></label><input id="search" type="search" />
+        <div>
+            <label>
+                <input type="checkbox" id="giphyCheckbox" value="giphy">
+            </label>GIPHY<br>
+            <label>
+                <input type="checkbox" id="unsplashCheckbox" value="unsplash">
+            </label>Unsplash<br>
+
+        </div>
         <button id="btnSearch">Seach</button>
     </form>
     <div class="favorites">
