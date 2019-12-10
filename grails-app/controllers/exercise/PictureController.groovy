@@ -10,19 +10,20 @@ class PictureController {
         render view: 'index'
     }
 
-    def add(String url, String title) {
+    def add() {
         def jsonSlurper = new JsonSlurper();
         def params = jsonSlurper.parseText(request.getReader().text)
 
         //System.out.println(params.url)
-        def picture = new Picture(url: params.url, title: params.title).save()
+        def picture = new Picture(url: params.url, title: params.title, imageUrl: params.imageUrl).save()
 
         render view: 'index'
     }
 
     def favorites(){
-        def favourites = Picture.getAll()
-        render view: "favorites", model: [favorites: favourites.reverse()]
+        def favourites = Picture.getAll().reverse()
+        //println(Picture.getAll())
+        render view: "favorites", model: [favorites: favourites]
     }
 
 

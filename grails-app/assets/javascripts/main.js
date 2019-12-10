@@ -67,7 +67,7 @@ async function displayImages(ev) {
         document.querySelector("#search").value = "";
 
         btn.addEventListener("click", ev => {
-            addToFavorites(img.src, img.alt);
+            addToFavorites(link.href, img.alt, img.src);
         })
 
     }
@@ -106,29 +106,6 @@ async function getGiphy(){
             }
             console.log(imagesGiphy.toString());
 
-/*
-            let div = document.createElement("div");
-            let link = document.createElement("a");
-            let img = document.createElement("img");
-            let btn = document.createElement("button");
-            btn.class = "btn";
-            btn.textContent = "Favorite";
-            img.src = content.data[0].images.downsized.url;
-            img.alt = content.data[0].title;
-            link.href = img.src;
-            link.target = "_blank";
-            link.appendChild(img);
-            div.appendChild(link);
-            div.appendChild(btn);
-            div.className = "image";
-            let out = document.querySelector(".out");
-            out.insertAdjacentElement("afterbegin", div);
-            document.querySelector("#search").value = "";
-
-            btn.addEventListener("click", ev => {
-                addToFavorites(img.src, img.alt);
-            })*/
-
         })
         .catch(err => {
             console.error(err);
@@ -161,30 +138,6 @@ async function getUnsplash(){
                 })
             }
             console.log(imagesUnsplash.toString());
-
-            /*
-            let div = document.createElement("div");
-            let link = document.createElement("a");
-            let img = document.createElement("img");
-            let btn = document.createElement("button");
-            btn.class = "btn";
-            btn.textContent = "Favorite";
-            let results = content.results;
-            img.src = results[0].urls.regular;
-            img.alt = results[0].alt_description;
-            link.href = img.src;
-            link.target = "_blank";
-            link.appendChild(img);
-            div.appendChild(link);
-            div.appendChild(btn);
-            div.className = "image";
-            let out = document.querySelector(".out");
-            out.insertAdjacentElement("afterbegin", div);
-            document.querySelector("#search").value = "";
-
-            btn.addEventListener("click", ev => {
-                addToFavorites(img.src, img.alt);
-            })*/
         });
 
 }
@@ -217,34 +170,6 @@ async function getPixabay(){
                 })
             }
             console.log(imagesPixabay.toString());
-
-
-
-
-
-            /*let div = document.createElement("div");
-            let link = document.createElement("a");
-            let img = document.createElement("img");
-            let btn = document.createElement("button");
-            btn.class = "btn";
-            btn.textContent = "Favorite";
-            img.src = content.hits[0].largeImageURL;
-            img.alt = content.hits[0].tags;
-            link.href = img.src;
-            link.target = "_blank";
-            link.appendChild(img);
-            div.appendChild(link);
-            div.appendChild(btn);
-            div.className = "image";
-            let out = document.querySelector(".out");
-            out.insertAdjacentElement("afterbegin", div);
-            document.querySelector("#search").value = "";
-
-            btn.addEventListener("click", ev => {
-                addToFavorites(img.src, img.alt);
-            })
-*/
-
         })
         .catch(err => {
             console.error(err);
@@ -253,15 +178,17 @@ async function getPixabay(){
 
 
 
-function addToFavorites(url, title){
+function addToFavorites(url, title="title", imageUrl){
     fetch("/Picture/add", {
         method: "POST",
         body: JSON.stringify({
             url: url,
+            imageUrl: imageUrl,
             title: title,
         })
     }).then(r => {
-        console.log("Added to Favorites");})
+        console.log("Added " + title + " to favorites");
+    })
 }
 
 
