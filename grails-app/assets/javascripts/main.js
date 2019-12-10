@@ -19,21 +19,28 @@ let pixabayBool = true;
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-    document.getElementById("btnSearch").addEventListener("click", ev => {
-        ev.preventDefault(); //Stop page reload
-
-        //Check fo checkboxes
-        giphyBool = document.getElementById("giphyCheckbox").checked;
-        unsplashBool = document.getElementById("unsplashCheckbox").checked;
-        pixabayBool = document.getElementById("pixabayCheckbox").checked;
-        if(document.getElementById("search").value.trim() !== "") {
-            if (giphyBool) getGiphy();
-            if (unsplashBool) getUnsplash();
-            if (pixabayBool) getPixabay();
-        }
-
-    });
+    document.getElementById("btnSearch").addEventListener("click", displayImages);
 }
+
+
+async function displayImages(ev) {
+    ev.preventDefault(); //Stop page reload
+
+    //Check fo checkboxes
+    giphyBool = document.getElementById("giphyCheckbox").checked;
+    unsplashBool = document.getElementById("unsplashCheckbox").checked;
+    pixabayBool = document.getElementById("pixabayCheckbox").checked;
+    if(document.getElementById("search").value.trim() !== "") {
+        if (giphyBool) await getGiphy();
+        if (unsplashBool) await getUnsplash();
+        if (pixabayBool) await getPixabay();
+    }
+
+
+
+
+}
+
 
 async function getGiphy(){
     let url = `https://api.giphy.com/v1/gifs/search?api_key=` + APIKEY_GIPHY + `&q=`;
@@ -154,22 +161,24 @@ async function getPixabay(){
         .then(content => {
             //  data, pagination, meta
 
+            console.log("Pixabay " + content);
 
             let images = content.hits;
             for(let i = 0; i<images.length; i++){
                 //console.log("image: " + images[i].url)
-                imagesUnsplash.push({
+                imagesPixabay.push({
                     title: images[i].tags,
                     imageUrl: images[i].largeImageURL,
                     url: images[i].largeImageURL,
                 })
             }
-            console.log(imagesUnsplash.toString());
+            console.log(imagesPixabay.toString());
 
-/*
 
-            console.log("Pixabay " + content);
-            let div = document.createElement("div");
+
+
+
+            /*let div = document.createElement("div");
             let link = document.createElement("a");
             let img = document.createElement("img");
             let btn = document.createElement("button");
@@ -212,6 +221,3 @@ function addToFavorites(url, title){
 }
 
 
-async function displayImages() {
-
-}
