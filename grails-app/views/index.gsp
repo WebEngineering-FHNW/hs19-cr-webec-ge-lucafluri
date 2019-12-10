@@ -19,6 +19,9 @@
             <label>
                 <input type="checkbox" id="unsplashCheckbox" value="unsplash">
             </label>Unsplash<br>
+            <label>
+                <input type="checkbox" id="pixabayCheckbox" value="pixabay">
+            </label>Pixabay<br>
 
         </div>
         <button id="btnSearch">Seach</button>
