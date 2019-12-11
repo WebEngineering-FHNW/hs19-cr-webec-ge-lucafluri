@@ -1,3 +1,4 @@
+
 //All API Keys
 let APIKEY_GIPHY = "LYq9LkEJfZhdTV7obo3RZKZoZSfhgowP";
 let APIKEY_Unsplash = "d477b088892e451cad488f834ccc346b710468a4755d0ccd2fcc6bb949314076";
@@ -44,7 +45,7 @@ async function displayImages(ev) {
         if (pixabayBool) await getPixabay();
     }
 
-    for(let i = 0; i<Math.max(imagesGiphy.length, imagesUnsplash.length, imagesPixabay.length); i++){
+    while(imagesGiphy.length>0 || imagesUnsplash.length>0 || imagesPixabay.length>0){
         if(imagesGiphy.length > 0) images.unshift(imagesGiphy.shift());
         if(imagesUnsplash.length > 0) images.unshift(imagesUnsplash.shift());
         if(imagesPixabay.length > 0) images.unshift(imagesPixabay.shift());
@@ -52,7 +53,7 @@ async function displayImages(ev) {
 
     images = images.reverse();
 
-    console.log(images);
+    console.log("Total Images: " + images.length);
     for(let i = 0; i < images.length; i++){
         let div = document.createElement("div");
         let link = document.createElement("a");
@@ -78,6 +79,26 @@ async function displayImages(ev) {
 
     }
 
+    Macy({
+        container: ".out",
+        trueOrder: true,
+        waitForImages: false,
+        margin: 24,
+        useImageLoader: true,
+        mobileFirst: true,
+        columns: 5,
+        breakAt: {
+            1550: 5,
+            1250: 4,
+            950: 3,
+            650: 2,
+            350: 1,
+            0: 1,
+        }
+    });
+
+
+
     document.querySelector("#search").value = "";
 
 
@@ -97,7 +118,6 @@ async function getGiphy(){
         .then(response => response.json())
         .then(content => {
             //  data, pagination, meta
-            console.log("Giphy: " + content);
             // console.log("META", content.meta);
             let images = content.data;
             for(let i = 0; i<images.length; i++){
@@ -108,7 +128,7 @@ async function getGiphy(){
                     url: images[i].url
                 })
             }
-            console.log(imagesGiphy.toString());
+            console.log("# from GIPHY: "+ imagesGiphy.length);
 
         })
         .catch(err => {
@@ -127,7 +147,7 @@ async function getUnsplash(){
         .then(r => r.json())
         .then(content => {
             //  data, pagination, meta
-            console.log("unsplash" + content);
+            //console.log("unsplash" + content);
 
             let images = content.results;
             for(let i = 0; i<images.length; i++){
@@ -138,7 +158,7 @@ async function getUnsplash(){
                     url: images[i].urls.regular,
                 })
             }
-            console.log(imagesUnsplash.toString());
+            console.log("# from Unsplash: "+ imagesUnsplash.length);
         });
 
 }
@@ -157,7 +177,7 @@ async function getPixabay(){
         .then(content => {
             //  data, pagination, meta
 
-            console.log("Pixabay " + content);
+            //console.log("Pixabay " + content);
 
             let images = content.hits;
             for(let i = 0; i<images.length; i++){
@@ -168,7 +188,7 @@ async function getPixabay(){
                     url: images[i].largeImageURL,
                 })
             }
-            console.log(imagesPixabay.toString());
+            console.log("# from Pixabay: "+ imagesPixabay.length);
         })
         .catch(err => {
             console.error(err);

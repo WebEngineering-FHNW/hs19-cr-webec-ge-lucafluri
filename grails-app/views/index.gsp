@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Searcher</title>
+
     <asset:javascript src="main.js"></asset:javascript>
+    <asset:javascript src="macy.min.js"></asset:javascript>
     <asset:stylesheet src="custom.css"></asset:stylesheet>
 
 </head>
@@ -17,10 +19,10 @@
                 <input type="checkbox" id="giphyCheckbox" checked>
             </label>GIPHY<br>
             <label>
-                <input type="checkbox" id="unsplashCheckbox" checked>
+                <input type="checkbox" id="unsplashCheckbox" >
             </label>Unsplash<br>
             <label>
-                <input type="checkbox" id="pixabayCheckbox" checked>
+                <input type="checkbox" id="pixabayCheckbox" >
             </label>Pixabay<br>
 
         </div>
