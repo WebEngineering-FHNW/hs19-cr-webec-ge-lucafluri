@@ -12,9 +12,9 @@ let imagesUnsplash = [];
 let imagesPixabay = [];
 
 //Booleans for checkboxes
-let giphyBool = true;
-let unsplashBool = true;
-let pixabayBool = true;
+let giphyBool = false;
+let unsplashBool = false;
+let pixabayBool = false;
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -25,8 +25,12 @@ function init() {
 
 async function displayImages(ev) {
     ev.preventDefault(); //Stop page reload
+
     //clear image array and clear html div
     images = [];
+    imagesGiphy = [];
+    imagesUnsplash = [];
+    imagesPixabay = [];
     document.querySelector(".out").innerHTML = "";
 
 
@@ -46,6 +50,8 @@ async function displayImages(ev) {
         if(imagesPixabay.length > 0) images.unshift(imagesPixabay.shift());
     }
 
+    images = images.reverse();
+
     console.log(images);
     for(let i = 0; i < images.length; i++){
         let div = document.createElement("div");
@@ -63,14 +69,16 @@ async function displayImages(ev) {
         div.appendChild(btn);
         div.className = "image";
         let out = document.querySelector(".out");
-        out.insertAdjacentElement("afterbegin", div);
-        document.querySelector("#search").value = "";
+        out.insertAdjacentElement("beforeend", div);
+
 
         btn.addEventListener("click", ev => {
             addToFavorites(link.href, img.alt, img.src);
         })
 
     }
+
+    document.querySelector("#search").value = "";
 
 
 
@@ -81,10 +89,6 @@ async function displayImages(ev) {
 async function getGiphy(){
     let url = `https://api.giphy.com/v1/gifs/search?api_key=` + APIKEY_GIPHY + `&q=`;
     let str = document.getElementById("search").value.trim();
-
-    //clear old array
-    imagesGiphy = [];
-
 
     url = url.concat(str);
     //console.log(url);
@@ -117,9 +121,6 @@ async function getUnsplash(){
     let url = "https://api.unsplash.com/search/photos/?client_id=" + APIKEY_Unsplash + "&query=";
     let str = document.getElementById("search").value.trim();
 
-    //clear old array
-    imagesUnsplash = [];
-
     url = url.concat(str);
 
     await fetch(url)
@@ -147,8 +148,6 @@ async function getPixabay(){
     let url = "https://pixabay.com/api/?key=" + APIKEY_Pixabay + "&q=";
     let str = document.getElementById("search").value.trim();
 
-    //clear old array
-    imagesPixabays = [];
 
     url = url.concat(str);
     //console.log(url);

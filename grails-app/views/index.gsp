@@ -14,13 +14,13 @@
         <label for="search"></label><input id="search" type="search" />
         <div>
             <label>
-                <input type="checkbox" id="giphyCheckbox" value="giphy">
+                <input type="checkbox" id="giphyCheckbox" checked>
             </label>GIPHY<br>
             <label>
-                <input type="checkbox" id="unsplashCheckbox" value="unsplash">
+                <input type="checkbox" id="unsplashCheckbox" checked>
             </label>Unsplash<br>
             <label>
-                <input type="checkbox" id="pixabayCheckbox" value="pixabay">
+                <input type="checkbox" id="pixabayCheckbox" checked>
             </label>Pixabay<br>
 
         </div>
