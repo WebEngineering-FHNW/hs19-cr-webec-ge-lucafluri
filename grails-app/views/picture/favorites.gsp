@@ -6,6 +6,7 @@
         <asset:stylesheet src="custom.css"></asset:stylesheet>
    </head>
     <body>
+    <a href="/">Go Back</a>
     <div class="out">
         <g:each in="${favorites}" var="favorite">
             <a href="${favorite.url}" target="_blank"><img src="${favorite.imageUrl}" alt="${favorite.title}"></a>
