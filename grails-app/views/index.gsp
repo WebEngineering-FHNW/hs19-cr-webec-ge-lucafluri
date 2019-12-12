@@ -12,6 +12,11 @@
 </head>
 <body>
 <main>
+    <div id="login">
+        <a href="/account/createUsersView">Sign Up</a>
+        <a href="/login/auth">Login</a>
+        <a href="/logout">Logout</a>
+    </div>
     <form>
         <label for="search"></label><input id="search" type="search" />
         <div>

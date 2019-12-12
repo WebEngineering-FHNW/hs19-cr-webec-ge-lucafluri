@@ -4,6 +4,12 @@
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'exercise.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'exercise.UserRole'
 grails.plugin.springsecurity.authority.className = 'exercise.Role'
+
+
+// For logout functionality
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.logout.afterLogoutUrl = "/"
+
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
@@ -33,6 +39,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'exercise.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'exercise.UserRole'
 grails.plugin.springsecurity.authority.className = 'exercise.Role'
+grails.plugin.springsecurity.
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
