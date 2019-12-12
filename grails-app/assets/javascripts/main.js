@@ -84,7 +84,7 @@ async function displayImages(ev) {
         trueOrder: true,
         waitForImages: false,
         margin: 24,
-        useImageLoader: true,
+        useImageLoader: false,
         mobileFirst: true,
         columns: 5,
         breakAt: {
