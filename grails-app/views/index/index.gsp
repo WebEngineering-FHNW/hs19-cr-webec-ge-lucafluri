@@ -13,9 +13,15 @@
 <main>
     <div id="login">
 
+        <g:if test="${loggedIn}">
+            Hi ${username}!
+            <a href="/logout">Logout</a>
+        </g:if>
+        <g:else>
             <a href="/account/createUsersView">Sign Up</a>
             <a href="/login/auth">Login</a>
-        <a href="/logout">Logout</a>
+        </g:else>
+
 
 
     </div>
