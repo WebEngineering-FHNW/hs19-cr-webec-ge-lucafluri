@@ -11,7 +11,7 @@ class PictureController {
     static allowedMethods = [add: 'POST']
 
     def index() {
-        render view: 'index'
+        render controller: 'index', action: 'index'
     }
 
     def add() {
@@ -25,10 +25,11 @@ class PictureController {
         //System.out.println(params.url)
         def picture = new Picture(url: params.url, title: params.title, imageUrl: params.imageUrl, username: authentication.getName()).save()
 
-        render view: 'index'
+        render controller: 'index', action: 'index'
     }
 
     def favorites(){
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication()
         def favourites = Picture.findAllByUsername(authentication.getName()).reverse()
         //println(Picture.getAll())

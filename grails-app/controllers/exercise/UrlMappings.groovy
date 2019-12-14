@@ -9,7 +9,7 @@ class UrlMappings {
             }
         }
         //"/favorites"(view: "/Picture/favorites")
-        "/"(view:"/index")
+        "/"(controller:"index")
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

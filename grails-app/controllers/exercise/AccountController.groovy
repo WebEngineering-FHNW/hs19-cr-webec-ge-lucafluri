@@ -20,7 +20,7 @@ class AccountController {
         Role userRole = Role.findOrCreateWhere(authority: Role.USER).save(flush: true)
         new UserRole(user: user, role: userRole).save(flush: true)
 
-        redirect(view: 'index')
+        redirect(controller: 'index', action: 'index')
     }
 
 }

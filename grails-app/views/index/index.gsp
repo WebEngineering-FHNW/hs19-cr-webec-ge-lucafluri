@@ -8,14 +8,16 @@
     <asset:javascript src="main.js"></asset:javascript>
     <asset:javascript src="macy.min.js"></asset:javascript>
     <asset:stylesheet src="custom.css"></asset:stylesheet>
-
 </head>
 <body>
 <main>
     <div id="login">
-        <a href="/account/createUsersView">Sign Up</a>
-        <a href="/login/auth">Login</a>
+
+            <a href="/account/createUsersView">Sign Up</a>
+            <a href="/login/auth">Login</a>
         <a href="/logout">Logout</a>
+
+
     </div>
     <form>
         <label for="search"></label><input id="search" type="search" />
