@@ -83,7 +83,7 @@ async function displayImages(ev) {
         trueOrder: true,
         waitForImages: false,
         margin: 24,
-        useImageLoader: false,
+        useImageLoader: true,
         mobileFirst: false,
         columns: 5,
         breakAt: {

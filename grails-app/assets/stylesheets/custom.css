@@ -1,14 +1,14 @@
 img {
     width: 300px;
-    /*background: transparent url("../assets/images/spinner.gif") no-repeat scroll center center;*/
+    background: transparent url("../assets/images/spinner.gif") no-repeat scroll center center;
 }
 .out {
     display: flex;
-    /*flex-direction: row;*/
-    /*flex-wrap: wrap;*/
-    /*align-items: flex-start;*/
-    /*justify-content: center;*/
-    /*align-content: flex-start;*/
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    align-content: flex-start;
 
 
 }
