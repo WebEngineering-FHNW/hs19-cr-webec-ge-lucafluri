@@ -7,10 +7,10 @@ class Picture {
     String username
 
     static constraints = {
-        url(nullable: false, blank: false)
-        imageUrl(nullable: false, blank: false)
-        title(nullable: true, blank: true)
-        username minSize: 2
+        url(nullable: false, blank: false, url: true)
+        imageUrl(nullable: false, blank: false, url: true)
+        title(nullable: false, blank: true)
+        username (minSize: 2, maxSize: 15)
 
     }
 }

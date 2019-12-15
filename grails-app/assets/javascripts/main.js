@@ -81,10 +81,10 @@ async function displayImages(ev) {
     Macy({
         container: ".out",
         trueOrder: true,
-        waitForImages: true,
+        waitForImages: false,
         margin: 24,
-        useImageLoader: true,
-        mobileFirst: true,
+        useImageLoader: false,
+        mobileFirst: false,
         columns: 5,
         breakAt: {
             1550: 5,
