@@ -8,8 +8,8 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-
-        "/"(view:"/index")
+        //"/favorites"(view: "/Picture/favorites")
+        "/"(controller:"index")
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

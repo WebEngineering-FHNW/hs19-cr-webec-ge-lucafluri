@@ -76,7 +76,6 @@ async function displayImages(ev) {
         btn.addEventListener("click", ev => {
             addToFavorites(link.href, img.alt, img.src);
         })
-
     }
 
     Macy({
