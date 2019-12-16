@@ -1,3 +1,24 @@
+text, h1, h2, h3, h4, p, a, a:checked{
+    color: white;
+}
+
+a{
+    text-decoration: none;
+}
+
+.image .btn{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+    -ms-transform: translate(-50%, -90%);
+    padding: 12px 24px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    align-items: center;
+}
+
 img {
     width: 300px;
 }
@@ -8,6 +29,105 @@ img {
     align-items: flex-start;
     justify-content: center;
     align-content: flex-start;
+    text-align: center;
 }
+
+
+body{
+    background-color: #212121;
+}
+
+#header {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 50px 0;
+    align-items: center;
+}
+
+form {
+    text-align: center;
+    color: white;
+    margin-top: 25px;
+}
+
+#search {
+    width: 80%;
+    height: 40px;
+    padding:8px 15px;
+    background:#595959;
+    border-radius: 25px;
+    border:0 solid;
+    color: white;
+}
+
+input:focus{
+    outline: none !important;
+}
+
+
+#checkboxes{
+    text-align: left;
+    width: 220px;
+    margin: 25px auto 25px;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox{
+    margin: 0 5px 0 20px;
+    padding:6px 15px;
+    border:0 transparent;
+    border-radius: 25px;
+    background-color:#00bde2;
+}
+
+#btnSearch{
+    padding:6px 15px;
+    left:-8px;
+    height: 40px;
+    border:0 transparent;
+    border-radius: 25px;
+    background-color:#00bde2;
+    color: black;
+}
+
+#btnSearch:hover  {
+    background-color:#fafafa;
+    color:#207cca;
+}
+
+#links {
+    margin-left: auto;
+    color: white;
+}
+
+.links{
+    margin-left: 50px;
+}
+
+#favLink{
+    margin-right: 70px;
+}
+
+.btnImage {
+    display: none;
+    width:70px;
+    height: 70px;
+    border:0 transparent;
+    color: black;
+    outline: none !important;
+
+}
+
+.image:hover .divImage{
+    filter: brightness(120%) grayscale(80%) blur(2px);
+}
+
+.image:hover .btnImage{
+    display: block;
+}
+
+
 
 

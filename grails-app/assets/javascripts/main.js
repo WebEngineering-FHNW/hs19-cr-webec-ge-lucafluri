@@ -55,17 +55,22 @@ async function displayImages(ev) {
     //reverse for correct order
     images = images.reverse();
     console.log("Total Images: " + images.length);
-
+    let id = 0;
     //Create the html elements for each image and favorite button
     for(let i = 0; i < images.length; i++){
         let div = document.createElement("div");
         let link = document.createElement("a");
         let img = document.createElement("img");
-        let btn = document.createElement("button");
-        btn.class = "btn";
-        btn.textContent = "Favorite";
+        let btn = document.createElement("a");
+        let btnImage = document.createElement("img");
+        btn.className = "btn";
+        btnImage.className = "btnImage";
+        btnImage.id = (id++).toString();
+        btnImage.src = "https://image.flaticon.com/icons/png/512/149/149760.png";
+        btn.appendChild(btnImage);
         img.src = images[i].imageUrl;
         img.alt = images[i].title;
+        img.className = "divImage";
         link.href = images[i].url;
         link.target = "_blank"; //Open in new tab
         link.appendChild(img);
@@ -75,7 +80,9 @@ async function displayImages(ev) {
         let out = document.querySelector(".out");
         out.insertAdjacentElement("beforeend", div);
 
+
         btn.addEventListener("click", ev => {
+            document.getElementById(ev.target.id).src = "https://image.flaticon.com/icons/png/512/148/148836.png";
             addToFavorites(link.href, img.alt, img.src);
         })
     }

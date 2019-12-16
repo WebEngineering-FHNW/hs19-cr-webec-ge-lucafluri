@@ -10,41 +10,42 @@
     <asset:stylesheet src="custom.css"></asset:stylesheet>
 </head>
 <body>
-<main>
-    <div id="login">
+    <div id="header">
 
-        <g:if test="${loggedIn}">
-            Hi ${username}!
-            <a href="/logout">Logout</a>
-        </g:if>
-        <g:else>
-            <a href="/account/createUsersView">Sign Up</a>
-            <a href="/login/auth">Login</a>
-        </g:else>
+        <h2 id="title">Image Searcher</h2>
 
-
-
+        <div id="links">
+            <a class="links" id="favLink" href="/Favorite/favorites">Favorites</a>
+            <g:if test="${loggedIn}">
+                <b> Hi ${username}!</b>
+                <a class="links" href="/logout">Logout</a>
+            </g:if>
+            <g:else>
+                <a class="links" href="/account/createUsersView">Sign Up</a>
+                <a class="links" href="/login/auth">Login</a>
+            </g:else>
+       </div>
     </div>
-    <form>
-        <label for="search"></label><input id="search" type="search" />
-        <div>
-            <label>
-                <input type="checkbox" id="giphyCheckbox" checked>
-            </label>GIPHY<br>
-            <label>
-                <input type="checkbox" id="unsplashCheckbox" >
-            </label>Unsplash<br>
-            <label>
-                <input type="checkbox" id="pixabayCheckbox" >
-            </label>Pixabay<br>
+        <form>
+            <label for="search"></label><input id="search" type="search" value="Funny Stuff..." onclick='this.value=""'/>
+            <button id="btnSearch">Search</button>
+            <div id="checkboxes">
+                <label>
+                    <input type="checkbox" id="giphyCheckbox" class="checkbox" checked>
+                </label>GIPHY
+                <label>
+                    <input type="checkbox" id="unsplashCheckbox" class="checkbox" checked>
+                </label>Unsplash
+                <label>
+                    <input type="checkbox" id="pixabayCheckbox" class="checkbox" checked>
+                </label>Pixabay
 
-        </div>
-        <button id="btnSearch">Seach</button>
-    </form>
-    <div class="favorites">
-       <a href="/Favorite/favorites">Favorites</a>
-    </div>
+            </div>
+
+        </form>
+
+
     <div class="out"></div>
-</main>
+
 </body>
 </html>
