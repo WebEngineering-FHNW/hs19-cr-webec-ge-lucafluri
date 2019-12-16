@@ -1,6 +1,6 @@
 package exercise
 
-class Picture {
+class Favorite {
     String url
     String imageUrl
     String title
@@ -9,7 +9,7 @@ class Picture {
     static constraints = {
         url(nullable: false, blank: false, url: true)
         imageUrl(nullable: false, blank: false, url: true)
-        title(nullable: false, blank: true)
+        title(nullable: true, blank: true)
         username (minSize: 2, maxSize: 15)
 
     }

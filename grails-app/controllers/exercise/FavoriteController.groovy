@@ -6,7 +6,7 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
-class PictureController {
+class FavoriteController {
 
     static allowedMethods = [add: 'POST']
 
@@ -15,7 +15,7 @@ class PictureController {
     }
 
     def add() {
-        def jsonSlurper = new JsonSlurper();
+        def jsonSlurper = new JsonSlurper()
         def params = jsonSlurper.parseText(request.getReader().text)
 
         //tutorial by https://www.baeldung.com/get-user-in-spring-security
@@ -23,7 +23,7 @@ class PictureController {
 
 
         //System.out.println(params.url)
-        def picture = new Picture(url: params.url, title: params.title, imageUrl: params.imageUrl, username: authentication.getName()).save()
+        def picture = new Favorite(url: params.url, title: params.title, imageUrl: params.imageUrl, username: authentication.getName()).save()
 
         render controller: 'index', action: 'index'
     }
@@ -31,7 +31,7 @@ class PictureController {
     def favorites(){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication()
-        def favourites = Picture.findAllByUsername(authentication.getName()).reverse()
+        def favourites = Favorite.findAllByUsername(authentication.getName()).reverse()
         //println(Picture.getAll())
         render view: "favorites", model: [favorites: favourites]
     }

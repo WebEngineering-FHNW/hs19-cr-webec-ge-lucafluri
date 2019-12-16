@@ -29,7 +29,7 @@
             <g:form resource="${this.picture}" method="PUT">
                 <g:hiddenField name="version" value="${this.picture?.version}" />
                 <fieldset class="form">
-                    <f:all bean="picture"/>
+                    <f:all bean="favorite"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

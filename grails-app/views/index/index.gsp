@@ -42,7 +42,7 @@
         <button id="btnSearch">Seach</button>
     </form>
     <div class="favorites">
-       <a href="/Picture/favorites">Favorites</a>
+       <a href="/Favorite/favorites">Favorites</a>
     </div>
     <div class="out"></div>
 </main>

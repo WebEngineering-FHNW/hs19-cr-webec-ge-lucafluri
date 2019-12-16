@@ -197,7 +197,7 @@ async function getPixabay(){
 
 
 function addToFavorites(url, title="title", imageUrl){
-    fetch("/Picture/add", {
+    fetch("/Favorite/add", {
         method: "POST",
         body: JSON.stringify({
             url: url,
