@@ -10,7 +10,7 @@
         username: <input type="text" name="userName" value="user" onfocus="this.value=''" />
     </div>
     <div>
-        password: <input type="text" name="password" value="password" onfocus="this.value=''" />
+        password: <input type="password" name="password" value="password" onfocus="this.value=''" />
     </div>
     <input type="submit" value="Sign Up"/>
 </form>
