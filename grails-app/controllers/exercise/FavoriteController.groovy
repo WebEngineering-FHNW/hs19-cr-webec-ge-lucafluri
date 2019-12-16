@@ -14,6 +14,7 @@ class FavoriteController {
         render controller: 'index', action: 'index'
     }
 
+    //Gets the parameters from the POST request and adds new picture to db
     def add() {
         def jsonSlurper = new JsonSlurper()
         def params = jsonSlurper.parseText(request.getReader().text)
@@ -28,6 +29,7 @@ class FavoriteController {
         render controller: 'index', action: 'index'
     }
 
+    //Shows the favorites view
     def favorites(){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication()

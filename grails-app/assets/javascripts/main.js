@@ -35,7 +35,7 @@ async function displayImages(ev) {
     document.querySelector(".out").innerHTML = "";
 
 
-    //Check fo checkboxes
+    //Check fo checkboxes and fetch from sources accordingly
     giphyBool = document.getElementById("giphyCheckbox").checked;
     unsplashBool = document.getElementById("unsplashCheckbox").checked;
     pixabayBool = document.getElementById("pixabayCheckbox").checked;
@@ -45,15 +45,18 @@ async function displayImages(ev) {
         if (pixabayBool) await getPixabay();
     }
 
+    //Create images array by interlacing all sources
     while(imagesGiphy.length>0 || imagesUnsplash.length>0 || imagesPixabay.length>0){
         if(imagesGiphy.length > 0) images.unshift(imagesGiphy.shift());
         if(imagesUnsplash.length > 0) images.unshift(imagesUnsplash.shift());
         if(imagesPixabay.length > 0) images.unshift(imagesPixabay.shift());
     }
 
+    //reverse for correct order
     images = images.reverse();
-
     console.log("Total Images: " + images.length);
+
+    //Create the html elements for each image and favorite button
     for(let i = 0; i < images.length; i++){
         let div = document.createElement("div");
         let link = document.createElement("a");
@@ -64,7 +67,7 @@ async function displayImages(ev) {
         img.src = images[i].imageUrl;
         img.alt = images[i].title;
         link.href = images[i].url;
-        link.target = "_blank";
+        link.target = "_blank"; //Open in new tab
         link.appendChild(img);
         div.appendChild(link);
         div.appendChild(btn);
@@ -72,12 +75,22 @@ async function displayImages(ev) {
         let out = document.querySelector(".out");
         out.insertAdjacentElement("beforeend", div);
 
-
         btn.addEventListener("click", ev => {
             addToFavorites(link.href, img.alt, img.src);
         })
     }
 
+    //If no images where found
+    if(images.length === 0){
+        let div = document.createElement("div");
+        let par = document.createElement("p");
+        par.textContent = "No Images found...";
+        div.appendChild(par);
+        let out = document.querySelector(".out");
+        out.insertAdjacentElement("beforeend", div);
+    }
+
+    //Orders all Images(divs) in a masonry grid using macy.js
     Macy({
         container: ".out",
         trueOrder: true,
@@ -97,30 +110,21 @@ async function displayImages(ev) {
     });
 
 
-
+    //clear search input
     document.querySelector("#search").value = "";
-
-
-
-
 }
 
 
 async function getGiphy(){
     let url = `https://api.giphy.com/v1/gifs/search?api_key=` + APIKEY_GIPHY + `&q=`;
     let str = document.getElementById("search").value.trim();
-
     url = url.concat(str);
-    //console.log(url);
 
     await fetch(url)
         .then(response => response.json())
         .then(content => {
-            //  data, pagination, meta
-            // console.log("META", content.meta);
             let images = content.data;
             for(let i = 0; i<images.length; i++){
-                //console.log("image: " + images[i].url)
                 imagesGiphy.push({
                     title: images[i].title,
                     imageUrl: images[i].images.downsized.url,
@@ -139,18 +143,13 @@ async function getGiphy(){
 async function getUnsplash(){
     let url = "https://api.unsplash.com/search/photos/?client_id=" + APIKEY_Unsplash + "&query=";
     let str = document.getElementById("search").value.trim();
-
     url = url.concat(str);
 
     await fetch(url)
         .then(r => r.json())
         .then(content => {
-            //  data, pagination, meta
-            //console.log("unsplash" + content);
-
             let images = content.results;
             for(let i = 0; i<images.length; i++){
-                //console.log("image: " + images[i].url)
                 imagesUnsplash.push({
                     title: images[i].alt_description,
                     imageUrl: images[i].urls.regular,
@@ -158,6 +157,8 @@ async function getUnsplash(){
                 })
             }
             console.log("# from Unsplash: "+ imagesUnsplash.length);
+        }).catch(err => {
+            console.error(err);
         });
 
 }
@@ -166,21 +167,13 @@ async function getUnsplash(){
 async function getPixabay(){
     let url = "https://pixabay.com/api/?key=" + APIKEY_Pixabay + "&q=";
     let str = document.getElementById("search").value.trim();
-
-
     url = url.concat(str);
-    //console.log(url);
 
     await fetch(url)
         .then(response => response.json())
         .then(content => {
-            //  data, pagination, meta
-
-            //console.log("Pixabay " + content);
-
-            let images = content.hits;
+           let images = content.hits;
             for(let i = 0; i<images.length; i++){
-                //console.log("image: " + images[i].url)
                 imagesPixabay.push({
                     title: images[i].tags,
                     imageUrl: images[i].largeImageURL,
@@ -195,7 +188,7 @@ async function getPixabay(){
 }
 
 
-
+//makes a post request to the favorite controller to add an image to the database
 function addToFavorites(url, title="title", imageUrl){
     fetch("/Favorite/add", {
         method: "POST",

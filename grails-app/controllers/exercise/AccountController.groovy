@@ -15,7 +15,6 @@ class AccountController {
     }
 
     def createUsers(String userName, String password) {
-
         User user = new User(username: userName, password: password).save(flush: true)
         Role userRole = Role.findOrCreateWhere(authority: Role.USER).save(flush: true)
         new UserRole(user: user, role: userRole).save(flush: true)
@@ -26,7 +25,6 @@ class AccountController {
 }
 
 class AccountModel implements Validateable{
-
 }
 
 

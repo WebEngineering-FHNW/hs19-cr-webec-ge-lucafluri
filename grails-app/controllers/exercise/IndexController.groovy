@@ -9,7 +9,7 @@ class IndexController {
 
     String getUsername(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication()
-        return authentication.getName();
+        return authentication.getName()
     }
 
     boolean loggedIn(){
@@ -19,6 +19,6 @@ class IndexController {
     }
 
     def index() {
-        render view: "index", model: [loggedIn: loggedIn(), username: getUsername()];
+        render view: "index", model: [loggedIn: loggedIn(), username: getUsername()]
     }
 }
