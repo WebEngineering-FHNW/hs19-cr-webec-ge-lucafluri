@@ -1,6 +1,5 @@
 img {
     width: 300px;
-    background: transparent url("../assets/images/spinner.gif") no-repeat scroll center center;
 }
 .out {
     display: flex;

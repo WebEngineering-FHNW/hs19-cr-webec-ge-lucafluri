@@ -87,10 +87,10 @@ async function displayImages(ev) {
         mobileFirst: false,
         columns: 5,
         breakAt: {
-            1550: 5,
-            1250: 4,
-            950: 3,
-            650: 2,
+            1550: 4,
+            1250: 3,
+            950: 2,
+            650: 1,
             350: 1,
             0: 1,
         }
