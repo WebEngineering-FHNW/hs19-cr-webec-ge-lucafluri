@@ -26,11 +26,12 @@ How to test the project:  (if other than `grailsw test-app`)
 Hand-written, static HTML 
 project description:      (if other than `index.html` in project root directory)
 
-External contributions:
+External contributions: None
 
-Other comments: 
+Other comments:  
+The website is not responsive, except the grid to some degree. It should be viewed in the chrome browser.
 
-I'm particular proud of:
+I'm particular proud of: Finishing the Project and implementing Spring Security^^
 
 
 ## Project grading 
