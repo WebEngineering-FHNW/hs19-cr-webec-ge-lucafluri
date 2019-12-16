@@ -19,8 +19,6 @@ class IndexController {
     }
 
     def index() {
-
-
         render view: "index", model: [loggedIn: loggedIn(), username: getUsername()];
     }
 }
