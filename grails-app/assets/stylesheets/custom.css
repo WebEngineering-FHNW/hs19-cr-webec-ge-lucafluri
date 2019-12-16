@@ -121,7 +121,7 @@ input:focus{
 }
 
 .image:hover .divImage{
-    filter: brightness(120%) grayscale(80%) blur(2px);
+    filter: brightness(120%) blur(2px);
 }
 
 .image:hover .btnImage{
