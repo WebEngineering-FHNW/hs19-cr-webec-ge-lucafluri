@@ -44,7 +44,7 @@
 
         </form>
 
-
+    <div class="resultsText"></div>
     <div class="out"></div>
 
 </body>

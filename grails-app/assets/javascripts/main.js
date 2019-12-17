@@ -33,6 +33,7 @@ async function displayImages(ev) {
     imagesUnsplash = [];
     imagesPixabay = [];
     document.querySelector(".out").innerHTML = "";
+    document.querySelector(".resultsText").innerHTML = "";
 
 
     //Check fo checkboxes and fetch from sources accordingly
@@ -55,7 +56,9 @@ async function displayImages(ev) {
     //reverse for correct order
     images = images.reverse();
     console.log("Total Images: " + images.length);
+
     let id = 0;
+
     //Create the html elements for each image and favorite button
     for(let i = 0; i < images.length; i++){
         let div = document.createElement("div");
@@ -93,9 +96,18 @@ async function displayImages(ev) {
         let par = document.createElement("p");
         par.textContent = "No Images found...";
         div.appendChild(par);
-        let out = document.querySelector(".out");
+        let out = document.querySelector(".resultsText");
         out.insertAdjacentElement("beforeend", div);
     }
+
+
+    //Show Results Info
+    let keywordDiv = document.querySelector('.resultsText');
+    keywordDiv.textContent = 'Showing ' + images.length + ' results for "' + document.querySelector("#search").value + '"';
+
+
+
+
 
     //Orders all Images(divs) in a masonry grid using macy.js
     Macy({
