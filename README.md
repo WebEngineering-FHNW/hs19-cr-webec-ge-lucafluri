@@ -36,4 +36,16 @@ I'm particular proud of: Finishing the Project and implementing Spring Security^
 
 ## Project grading 
 
-< to be filled by lecturer>
+My remarks:
++ You could have implemented the image fetching on server side.
+The testing would have been easier so, wouldn't?
++ The application flow could be improved.
+
+Kindly refer to [GradedExercise.xlsx](GradedExercise.xlsx) for grading details.
+
+A neat application which works like a charm. With a bit more effort/time investment could become
+a really cool one. Congrats!
+
+Grade: **5.5**
+
+
